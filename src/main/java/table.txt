@@ -1,0 +1,25 @@
+#오라클에서 사용하던것이 mysql에서 바뀐것 정리
+#varchar2 -> varchar
+#number(10, 0) -> int
+#date -> date or timestamp
+
+# 시퀀스 -> auto_increment 
+#함수 -> 구글에 찾아보면 된다.
+#join -> 똑같음
+#서브쿼리 -> ???
+#mysql은 version별로 대소문자를 구분할 수도 있고, 구분을 안할 수도 있음
+create table score ( 
+	num int primary key auto_increment,   -- num컬럼을 int타입의 자동증가 값 (문자)
+    name varchar(30) not null,  -- 숫자
+    kor int default 0,
+    eng int default 0
+);
+drop table score;
+
+select * from score;
+insert into score (name, kor, eng) values('홍길자', 30, 30);
+
+select A.* 
+from (select * from score)A;
+
+select @@autocommit;
