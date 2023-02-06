@@ -19,12 +19,13 @@ public class ScoreDAOImpl implements ScoreDAO {
 	private DataSource dataSource;
 	
 	
+	
 	@Override
 	public void regist(ScoreVO vo) {
 		
 		String sql = "insert into score(name, kor, eng) values(?,?,?)";
 		//6
-		Connection conn = null; //2
+		Connection conn = null; //2 db연결
 		PreparedStatement pstmt = null; //3
 		
 		try {

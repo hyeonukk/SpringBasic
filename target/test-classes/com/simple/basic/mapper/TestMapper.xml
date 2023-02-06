@@ -6,10 +6,61 @@
 <!-- 인터페이스의 풀경로를 적습니다. -->
 <mapper namespace="com.simple.basic.mapper.TestMapper">
 	
+	<!-- 1  -->
 	<!-- id는 인터페이스의 메서드명 resultType=반환타입 -->
 	<select id="getTime" resultType="string">
 		select now()
 	</select>
+	
+	
+	<!-- ; 은 적지 않습니다. -->
+	<!-- 한 행에 대한 처리를 할 데이터 타입 (풀 경로) -->
+	<select id="getScore" resultType="com.simple.command.ScoreVO">
+		select * from score
+	</select>
+	
+	<!-- 매개변수 - 단일값(매개변수명을 그대로) -->
+	<select id="getOne" resultType="com.simple.command.ScoreVO">
+		select * from score where num = #{a}
+	</select>
+	
+	
+	<!-- parameterType - 매개변수의 타입(생략가능) -->
+	<insert id="insertOne" parameterType="string">
+		insert into score(name) values(#{name})
+	</insert>
+	
+	<insert id="insertTwo" parameterType="com.simple.command.ScoreVO">
+		insert into score(name, kor, eng)
+		values(#{name}, #{kor}, #{eng} )
+	</insert>
+	
+	<insert id="insertThree">
+		insert into score(name, kor, eng)
+		values(#{name}, #{kor}, #{eng} )
+	</insert>
+	
+	
+	<select id="selectMap" resultType="map" parameterType="int">
+		select * from score where num = #{num}
+	</select>
+	
+	<select id="selectTwo" resultType="map">
+		select * from score
+	</select>
+	
+	<!-- alias설정이 있다면 parameter타입, result타입에 단축명으로 사용가능합니다. -->
+	<update id="updateOne" parameterType="ScoreVO">
+		update score 
+		set name = #{name}, 
+			kor = #{kor}, 
+			eng = #{eng}
+		where num = #{num}
+	</update>
+	
+	<insert id="insertFour">
+		insert into score(name, kor) values(#{aaa}, {bbb})
+	</insert>
 	
 </mapper>
 
